@@ -22,7 +22,7 @@ const userSchema = new Schema (
             required :true,
             trim: true
         },
-        verifyOtp: {
+        verifyOTP: {
             type: String,
             default: ''
         },
