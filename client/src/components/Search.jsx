@@ -1,80 +1,47 @@
-// import React, { useState } from "react";
-// import {
-//   AppBar,
-//   Toolbar,
-//   IconButton,
-//   Typography,
-//   Dialog,
-//   Slide,
-//   TextField,
-//   InputAdornment,
-//   Box,
-// } from "@mui/material";
-// import {  Close } from "@mui/icons-material";
-// import { Search } from 'lucide-react';
-// const FullScreenSearch = () => {
-//   const [open, setOpen] = useState(false);
-//   const [searchQuery, setSearchQuery] = useState("");
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai"; // Import from react-icons
 
-//   const handleOpen = () => setOpen(true);
-//   const handleClose = () => {
-//     setOpen(false);
-//     setSearchQuery("");
-//   };
+const Search = () => {
+  const [searchQuery, setSearchQuery] = useState("");
 
-//   return (
-//     <div>
-//       <IconButton onClick={handleOpen}>
-//         <Search color="#fafafa"/>
-//       </IconButton>
+  return (
+    <div>
+      {/* Trigger Button */}
+      <Dialog>
+        <DialogTrigger asChild>
+          <button className="pt-[5px]">
+          <AiOutlineSearch className="text-white text-3xl" /> 
+          </button>
+        </DialogTrigger>
+        {/* Full-Screen Search Dialog */}
+        <DialogContent className="flex flex-col bg-black/50 backdrop-blur-lg p-6 w-full">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-semibold text-white">Search</h2>
+            <DialogTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <AiOutlineClose className="w-6 h-6 text-white" />
+              </Button>
+            </DialogTrigger>
+          </div>
 
-//       <Dialog
-//         fullScreen
-//         open={open}
-//         onClose={handleClose}
-//         TransitionComponent={Slide}
-//         PaperProps={{
-//           sx: {
-//             backgroundColor: "rgba(0, 0, 0, 0.2)", 
-//             backdropFilter: "blur(10px)", 
-//           },
-//         }}
-//       >
-//         <AppBar position="static" sx={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
-//           <Toolbar>
-//             <Typography variant="h6">Search</Typography>
-//             <IconButton sx={{ ml: "auto" }} color="inherit" onClick={handleClose}>
-//               <Close />
-//             </IconButton>
-//           </Toolbar>
-//         </AppBar>
+          {/* Search Input Field with Icon */}
+          <div className="relative w-full max-w-md mx-auto mt-6">
+            <AiOutlineSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+            <Input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-white/80 backdrop-blur-md rounded-lg p-3 pl-10 focus:outline-none"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+};
 
-//         <Box sx={{ p: 3, display: "flex", justifyContent: "center" }}>
-//           <TextField
-//             fullWidth
-//             autoFocus
-//             placeholder="Search..."
-//             variant="outlined"
-//             value={searchQuery}
-//             onChange={(e) => setSearchQuery(e.target.value)}
-//             sx={{
-//               maxWidth: "600px",
-//               backgroundColor: "rgba(255, 255, 255, 0.8)", 
-//               borderRadius: "10px",
-//               backdropFilter: "blur(5px)", 
-//             }}
-//             InputProps={{
-//               startAdornment: (
-//                 <InputAdornment position="start">
-//                   <Search />
-//                 </InputAdornment>
-//               ),
-//             }}
-//           />
-//         </Box>
-//       </Dialog>
-//     </div>
-//   );
-// };
-
-// export default FullScreenSearch;
+export default Search;
