@@ -1,9 +1,10 @@
-import React from "react";
+import React from 'react'
 import { Link } from "react-router-dom";
 
-const GetBlog = ({ img, title, date, id }) => {
+const Allblogs = () => {
   return (
-    <div className="container mx-auto px-4 py-8 flex flex-col justify-center items-center">
+    <div>
+       <div className="container mx-auto px-4 py-8 flex flex-col justify-center items-center">
    <Link to={`/blog/${id}`}>
    <div
         className="max-w-sm bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200"
@@ -24,7 +25,8 @@ const GetBlog = ({ img, title, date, id }) => {
       </div>
    </Link>
     </div>
-  );
-};
+    </div>
+  )
+}
 
-export default GetBlog;
+export default Allblogs
